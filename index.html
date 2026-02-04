@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grand Leakage - Global Political Corruption Exposed</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-card: #1a1a1a;
+            --accent: #ff0000;
+            --accent-glow: rgba(255, 0, 0, 0.3);
+            --text: #ffffff;
+            --text-dim: #888888;
+            --border: #333333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+            padding: 2rem 0;
+            border-bottom: 2px solid var(--accent);
+            box-shadow: 0 0 20px var(--accent-glow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: var(--accent);
+            text-shadow: 0 0 10px var(--accent-glow);
+            margin-bottom: 0.5rem;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px var(--accent-glow); }
+            to { text-shadow: 0 0 20px var(--accent-glow), 0 0 30px var(--accent-glow); }
+        }
+
+        .tagline {
+            color: var(--text-dim);
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .controls {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .search-box, .filter-select {
+            flex: 1;
+            min-width: 200px;
+            padding: 1rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .search-box:focus, .filter-select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        .stats {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .stat-label {
+            color: var(--text-dim);
+            margin-top: 0.5rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 30px var(--accent-glow);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+        }
+
+        .politician-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--text);
+        }
+
+        .severity {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .severity-high { background: #ff0000; color: white; }
+        .severity-medium { background: #ff9900; color: white; }
+        .severity-low { background: #ffcc00; color: black; }
+
+        .country {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .scandal-title {
+            font-size: 1.1rem;
+            color: var(--accent);
+            margin: 1rem 0 0.5rem 0;
+            font-weight: bold;
+        }
+
+        .scandal-desc {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .evidence-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background: var(--border);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            color: var(--text);
+        }
+
+        .tag.video { background: #ff0000; }
+        .tag.image { background: #0066ff; }
+        .tag.document { background: #00cc00; }
+        .tag.audio { background: #ff00ff; }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            max-width: 900px;
+            margin: 2rem auto;
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 2px solid var(--accent);
+            padding: 2rem;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+            color: var(--accent);
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0.5rem;
+        }
+
+        .modal-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .evidence-section {
+            margin-top: 2rem;
+        }
+
+        .evidence-item {
+            background: var(--bg-dark);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border-left: 3px solid var(--accent);
+        }
+
+        .evidence-item h4 {
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1rem 0;
+            border-radius: 8px;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        footer {
+            background: var(--bg-card);
+            border-top: 2px solid var(--accent);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .disclaimer {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .cards-grid { grid-template-columns: 1fr; }
+            .controls { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>🔓 GRAND LEAKAGE</h1>
+            <p class="tagline">Exposing Political Corruption Worldwide | Evidence-Based Database</p>
+        </div>
+    </header>
+
+    <div class="stats">
+        <div class="stat-card">
+            <div class="stat-number" id="totalPoliticians">0</div>
+            <div class="stat-label">Politicians Exposed</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="totalScandals">0</div>
+            <div class="stat-label">Scandals Documented</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="totalCountries">0</div>
+            <div class="stat-label">Countries Covered</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="totalEvidence">0</div>
+            <div class="stat-label">Evidence Files</div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <input type="text" class="search-box" id="searchBox" placeholder="🔍 Search politicians, scandals, countries...">
+        <select class="filter-select" id="countryFilter">
+            <option value="">All Countries</option>
+        </select>
+        <select class="filter-select" id="severityFilter">
+            <option value="">All Severities</option>
+            <option value="high">High Severity</option>
+            <option value="medium">Medium Severity</option>
+            <option value="low">Low Severity</option>
+        </select>
+    </div>
+
+    <div class="container">
+        <div class="cards-grid" id="cardsGrid"></div>
+    </div>
+
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal()">×</button>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="disclaimer">
+            <p><strong>⚠️ DISCLAIMER:</strong> This is a demonstration website. All data shown is for educational purposes. 
+            Always verify information from multiple credible sources. This platform does not endorse or verify the accuracy of any claims.</p>
+            <p style="margin-top: 1rem;">🔒 Data sourced from public records, investigative journalism, and whistleblower reports.</p>
+        </div>
+    </footer>
+
+    <script>
+        const database = [
+            {
+                id: 1,
+                name: "Vladimir Putin",
+                country: "Russia",
+                position: "President",
+                image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400",
+                scandals: [
+                    {
+                        title: "Panama Papers - Offshore Wealth",
+                        description: "Leaked documents revealed $2 billion in offshore accounts linked to Putin's associates, suggesting hidden wealth and money laundering operations.",
+                        severity: "high",
+                        evidence: [
+                            { type: "document", name: "Panama Papers Leak", url: "#" },
+                            { type: "image", name: "Bank Transfer Records", url: "#" },
+                            { type: "video", name: "Investigation Documentary", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 2,
+                name: "Donald Trump",
+                country: "USA",
+                position: "Former President",
+                image: "https://images.unsplash.com/photo-1540910419892-4a36d2c3266c?w=400",
+                scandals: [
+                    {
+                        title: "Tax Evasion Allegations",
+                        description: "NYT investigation revealed $70,000 in tax deductions for hairstyling and potential tax avoidance schemes spanning decades.",
+                        severity: "high",
+                        evidence: [
+                            { type: "document", name: "Tax Returns Analysis", url: "#" },
+                            { type: "image", name: "Financial Statements", url: "#" }
+                        ]
+                    },
+                    {
+                        title: "Ukraine Pressure Campaign",
+                        description: "Impeachment inquiry revealed pressure on Ukraine to investigate political rivals in exchange for military aid.",
+                        severity: "high",
+                        evidence: [
+                            { type: "document", name: "Whistleblower Report", url: "#" },
+                            { type: "audio", name: "Phone Call Transcript", url: "#" }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 3,
+                name: "Narendra Modi",
+                country: "India",
+                position: "Prime Minister",
+                image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=400",
+                scandals: [
+                    {
+                        title: "Electoral Bonds Scheme",
+                        description: "Supreme Court struck down anonymous electoral bonds scheme, revealing potential quid pro quo between corporations and ruling party.",
+                        severity: "high",
+                        evidence: [
+                            { type: "document", name: "Supreme Court Judgment", url: "#" },
+                            { type: "image", name: "Bond Purchase Records", url: "#" }
+                        ]
+                    },
+                    {
+                        title: "Pegasus Spyware Scandal",
+                        description: "Investigation revealed government allegedly used Israeli spyware to target journalists, activists, and opposition leaders.",
+                        severity: "high",
+                        evidence: [
+                            { type: "document", name: "Forensic Analysis Report", url: "#" },
+                            { type: "video", name: "Investigation Report", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 4,
+                name: "Xi Jinping",
+                country: "China",
+                position: "President",
+                image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400",
+                scandals: [
+                    {
+                        title: "Family Wealth Concealment",
+                        description: "Bloomberg investigation revealed Xi's extended family accumulated hundreds of millions in hidden wealth through business dealings.",
+                        severity: "high",
+                        evidence: [
+                            { type: "document", name: "Bloomberg Investigation", url: "#" },
+                            { type: "image", name: "Corporate Records", url: "#" }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 5,
+                name: "Boris Johnson",
+                country: "UK",
+                position: "Former Prime Minister",
+                image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400",
+                scandals: [
+                    {
+                        title: "Partygate Scandal",
+                        description: "Multiple gatherings held at 10 Downing Street during COVID-19 lockdowns, violating rules imposed on the public.",
+                        severity: "medium",
+                        evidence: [
+                            { type: "image", name: "Party Photos", url: "#" },
+                            { type: "document", name: "Sue Gray Report", url: "#" },
+                            { type: "video", name: "News Coverage", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 6,
+                name: "Emmanuel Macron",
+                country: "France",
+                position: "President",
+                image: "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=400",
+                scandals: [
+                    {
+                        title: "McKinsey Consulting Scandal",
+                        description: "Government spent over €1 billion on consulting firms while avoiding standard tax obligations.",
+                        severity: "medium",
+                        evidence: [
+                            { type: "document", name: "Senate Investigation Report", url: "#" },
+                            { type: "image", name: "Contract Documents", url: "#" }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 7,
+                name: "Jair Bolsonaro",
+                country: "Brazil",
+                position: "Former President",
+                image: "https://images.unsplash.com/photo-1483389127117-b6a2102724ae?w=400",
+                scandals: [
+                    {
+                        title: "COVID-19 Mismanagement",
+                        description: "Senate inquiry found evidence of deliberate negligence leading to thousands of preventable deaths.",
+                        severity: "high",
+                        evidence: [
+                            { type: "document", name: "Senate CPI Report", url: "#" },
+                            { type: "video", name: "Testimony Footage", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 8,
+                name: "Benjamin Netanyahu",
+                country: "Israel",
+                position: "Prime Minister",
+                image: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=400",
+                scandals: [
+                    {
+                        title: "Corruption Trial",
+                        description: "Charged with bribery, fraud and breach of trust in three separate cases involving gifts from billionaires and media manipulation.",
+                        severity: "high",
+                        evidence: [
+                            { type: "document", name: "Indictment Papers", url: "#" },
+                            { type: "image", name: "Evidence Photos", url: "#" },
+                            { type: "video", name: "Court Proceedings", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 9,
+                name: "Recep Erdoğan",
+                country: "Turkey",
+                position: "President",
+                image: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=400",
+                scandals: [
+                    {
+                        title: "Family Corruption Allegations",
+                        description: "Leaked recordings suggested involvement of Erdoğan and his son in corruption and money laundering.",
+                        severity: "high",
+                        evidence: [
+                            { type: "audio", name: "Leaked Phone Calls", url: "#" },
+                            { type: "document", name: "Investigation Files", url: "#" }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 10,
+                name: "Imran Khan",
+                country: "Pakistan",
+                position: "Former Prime Minister",
+                image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=400",
+                scandals: [
+                    {
+                        title: "Toshakhana Gifts Case",
+                        description: "Accused of illegally selling state gifts and undervaluing them in official declarations.",
+                        severity: "medium",
+                        evidence: [
+                            { type: "document", name: "Court Documents", url: "#" },
+                            { type: "image", name: "Gift Records", url: "#" }
+                        ]
+                    }
+                ]
+            }
+        ];
+
+        let filteredData = [...database];
+
+        function init() {
+            populateFilters();
+            updateStats();
+            renderCards(filteredData);
+            setupEventListeners();
+        }
+
+        function populateFilters() {
+            const countries = [...new Set(database.map(p => p.country))].sort();
+            const countryFilter = document.getElementById('countryFilter');
+            countries.forEach(country => {
+                const option = document.createElement('option');
+                option.value = country;
+                option.textContent = country;
+                countryFilter.appendChild(option);
+            });
+        }
+
+        function updateStats() {
+            const totalScandals = database.reduce((sum, p) => sum + p.scandals.length, 0);
+            const totalEvidence = database.reduce((sum, p) => 
+                sum + p.scandals.reduce((s, sc) => s + sc.evidence.length, 0), 0);
+            
+            document.getElementById('totalPoliticians').textContent = database.length;
+            document.getElementById('totalScandals').textContent = totalScandals;
+            document.getElementById('totalCountries').textContent = new Set(database.map(p => p.country)).size;
+            document.getElementById('totalEvidence').textContent = totalEvidence;
+        }
+
+        function renderCards(data) {
+            const grid = document.getElementById('cardsGrid');
+            grid.innerHTML = '';
+
+            data.forEach(politician => {
+                politician.scandals.forEach(scandal => {
+                    const card = createCard(politician, scandal);
+                    grid.appendChild(card);
+                });
+            });
+        }
+
+        function createCard(politician, scandal) {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.onclick = () => openModal(politician, scandal);
+
+            const evidenceTags = scandal.evidence.map(e => 
+                `<span class="tag ${e.type}">${e.type.toUpperCase()}</span>`
+            ).join('');
+
+            card.innerHTML = `
+                <img src="${politician.image}" alt="${politician.name}" class="card-image">
+                <div class="card-content">
+                    <div class="card-header">
+                        <div>
+                            <div class="politician-name">${politician.name}</div>
+                            <div class="country">📍 ${politician.country} | ${politician.position}</div>
+                        </div>
+                        <span class="severity severity-${scandal.severity}">${scandal.severity.toUpperCase()}</span>
+                    </div>
+                    <div class="scandal-title">${scandal.title}</div>
+                    <div class="scandal-desc">${scandal.description.substring(0, 150)}...</div>
+                    <div class="evidence-tags">${evidenceTags}</div>
+                </div>
+            `;
+
+            return card;
+        }
+
+        function openModal(politician, scandal) {
+            const modal = document.getElementById('modal');
+            const modalBody = document.getElementById('modalBody');
+
+            const evidenceHTML = scandal.evidence.map(e => {
+                let content = '';
+                if (e.type === 'video') {
+                    content = `<div class="video-container"><iframe src="${e.url}" frameborder="0" allowfullscreen></iframe></div>`;
+                } else {
+                    content = `<a href="${e.url}" target="_blank" style="color: var(--accent);">View ${e.type.toUpperCase()}</a>`;
+                }
+                return `
+                    <div class="evidence-item">
+                        <h4>📎 ${e.name}</h4>
+                        ${content}
+                    </div>
+                `;
+            }).join('');
+
+            modalBody.innerHTML = `
+                <img src="${politician.image}" alt="${politician.name}" class="modal-image">
+                <h2>${politician.name}</h2>
+                <p class="country">📍 ${politician.country} | ${politician.position}</p>
+                <div class="scandal-title">${scandal.title}</div>
+                <span class="severity severity-${scandal.severity}">${scandal.severity.toUpperCase()} SEVERITY</span>
+                <p style="margin-top: 1rem; line-height: 1.8;">${scandal.description}</p>
+                <div class="evidence-section">
+                    <h3 style="color: var(--accent); margin-bottom: 1rem;">📁 Evidence Files (${scandal.evidence.length})</h3>
+                    ${evidenceHTML}
+                </div>
+            `;
+
+            modal.style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+
+        function setupEventListeners() {
+            document.getElementById('searchBox').addEventListener('input', filterData);
+            document.getElementById('countryFilter').addEventListener('change', filterData);
+            document.getElementById('severityFilter').addEventListener('change', filterData);
+
+            window.onclick = (e) => {
+                const modal = document.getElementById('modal');
+                if (e.target === modal) closeModal();
+            };
+        }
+
+        function filterData() {
+            const searchTerm = document.getElementById('searchBox').value.toLowerCase();
+            const country = document.getElementById('countryFilter').value;
+            const severity = document.getElementById('severityFilter').value;
+
+            filteredData = database.filter(politician => {
+                const matchesSearch = !searchTerm || 
+                    politician.name.toLowerCase().includes(searchTerm) ||
+                    politician.country.toLowerCase().includes(searchTerm) ||
+                    politician.scandals.some(s => 
+                        s.title.toLowerCase().includes(searchTerm) ||
+                        s.description.toLowerCase().includes(searchTerm)
+                    );
+
+                const matchesCountry = !country || politician.country === country;
+
+                const matchesSeverity = !severity || 
+                    politician.scandals.some(s => s.severity === severity);
+
+                return matchesSearch && matchesCountry && matchesSeverity;
+            });
+
+            renderCards(filteredData);
+        }
+
+        init();
+    </script>
+</body>
+</html>
